@@ -4,10 +4,19 @@ module.exports = (app) => {
   // BOILER PLATE routes codes --- might change ???
 
   // FIND ALL
-  app.get("/api/users", (req, res) => {});
+  app.get("/api/users", (req, res) => {
+    res.json(db.User.findAll({ attributes: ["username", "id"] }));
+  });
 
   // FIND ONE
-  app.get("/api/users/:id", (req, res) => {});
+  app.get("/api/users/:id", (req, res) => {
+    res.json(
+      db.User.findAll({
+        attributes: ["username", "id"],
+        where: { id: req.params.id },
+      })
+    );
+  });
 
   // CREATE NEW USER
   app.post("/api/users", (req, res) => {
