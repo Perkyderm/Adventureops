@@ -1,6 +1,7 @@
 const Talk = require("talkjs");
 
 
+
 await Talk.ready;
 const me = new Talk.User({
     id: "123456",
