@@ -19,6 +19,22 @@ module.exports = function (sequelize, DataTypes) {
     },
   });
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
+
+  User.associate = (models) => {
+    // We're saying that a Post should belong to an Author
+    // A Post can't be created without an Author due to the foreign key constraint
+    User.hasMany(models.Post, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
+    User.hasMany(models.Location, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
+  };
+
   User.prototype.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
   };

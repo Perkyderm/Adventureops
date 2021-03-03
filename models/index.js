@@ -41,11 +41,6 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
-db.User.hasMany(db.Post);
-db.Post.hasOne(db.User);
-db.User.hasMany(db.Location);
-db.Location.hasOne(db.User);
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
