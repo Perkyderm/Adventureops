@@ -12,6 +12,7 @@ module.exports = (app) => {
   // FIND ONE
   app.get("/api/users/:id", (req, res) => {
     db.User.findOne({
+      attributes: ["username", "id"],
       where: req.params.id,
 
       // should I include in Posts and Locations?
