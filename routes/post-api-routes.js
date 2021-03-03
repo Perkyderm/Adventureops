@@ -11,12 +11,20 @@ module.exports = (app) => {
     app.get('/api/posts/:id', (req, res) => { });
 
     // CREATE NEW POST
-    app.post('/api/posts', (req, res) => { });
+    app.post('/api/posts', (req, res) => { 
+        db.Post.create(req.body).then((dbPost) => res.json(dbPost))
+    });
 
     // UPDATES POST
     app.put('/api/posts', (req, res) => {});
 
     // DELETE POST
-    app.delete('/api/posts/:id', (req, res) => { });
+    app.delete('/api/posts/:id', (req, res) => { 
+        db.Post.destroy({
+            where: {
+                id: req.params.id,
+            },
+        }).then((dbPost) => res.json(dbPost));
+    });
 
 };
