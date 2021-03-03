@@ -5,10 +5,29 @@ module.exports = (app) => {
     // BOILER PLATE routes codes --- might change ???
 
     // FIND ALL
-    app.get('/api/locations', (req, res) => { });
+    app.get('/api/locations', (req, res) => { 
+
+        const query = {};
+        if (req.query.user_id) {
+            query.UserId = req.query.user_id;
+        }
+
+        db.Location.findAll({
+            where: query,
+            include: [db.User],
+        }).then((dbLocation) => res.json(dbLocation));
+    });
 
     // FIND ONE 
-    app.get('/api/locations/:id', (req, res) => { });
+    app.get('/api/locations/:id', (req, res) => { 
+
+        db.Location.findOne({
+            where: {
+                id: req.params.id,
+            },
+            include: [db.User],
+        }).then((dbLocation) => res.json(dbLocation));
+    });
 
     // CREATE NEW LOCATION
     app.post('/api/locations', (req, res) => { 
@@ -16,7 +35,14 @@ module.exports = (app) => {
     });
 
     // UPDATES LOCATION
-    app.put('/api/locations', (req, res) => { });
+    app.put('/api/locations', (req, res) => { 
+
+        db. Location.update(req.body, {
+            where: {
+                id: req.body.id,
+            },
+        }).then((dbLocation) => res.json(dbLocation));
+    });
 
     // DELETE LOCATION
     app.delete('/api/locations/:id', (req, res) => { 

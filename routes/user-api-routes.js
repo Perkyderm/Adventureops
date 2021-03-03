@@ -4,11 +4,16 @@ module.exports = (app) => {
 
     // BOILER PLATE routes codes --- might change ???
 
-    // FIND ALL
-    app.get('/api/users', (req, res) => {});
-
     // FIND ONE 
-    app.get('/api/users/:id', (req, res) => {});
+    app.get('/api/users/:id', (req, res) => {
+        db.User.findOne({
+
+            where: req.params.id,
+            
+            // should I include in Posts and Locations?
+
+        }).then((dbUser) => res.json(dbUser));
+    });
 
     // CREATE NEW USER
     app.post('/api/users', (req, res) => {
