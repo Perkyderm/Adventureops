@@ -24,14 +24,10 @@ module.exports = function (sequelize, DataTypes) {
     // We're saying that a Post should belong to an Author
     // A Post can't be created without an Author due to the foreign key constraint
     User.hasMany(models.Post, {
-      foreignKey: {
-        allowNull: false,
-      },
+      onDelete: "cascade",
     });
     User.hasMany(models.Location, {
-      foreignKey: {
-        allowNull: false,
-      },
+      onDelete: "cascade",
     });
   };
 
