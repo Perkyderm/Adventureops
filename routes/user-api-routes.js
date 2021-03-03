@@ -13,15 +13,30 @@ module.exports = (app) => {
   app.get("/api/users/:id", (req, res) => {
     db.User.findOne({
       attributes: ["username", "id"],
-      where: req.params.id,
+      where: {
+          id: req.params.id,
+      }, 
 
       // should I include in Posts and Locations?
     }).then((dbUser) => res.json(dbUser));
   });
 
-  // CREATE NEW USER
+  app.post("/api/login", passport.authenticate("local"), function (req, res) {
+        res.json(req.user);
+    });
+
+  // CREATE NEW USER --- maybe change route name to "/api/signup" in future 
   app.post("/api/users", (req, res) => {
-    db.User.create(req.body).then((dbUser) => res.json(dbUser));
+      db.User.create({
+          email: req.body.email,
+          password: req.body.password
+      })
+          .then(function () {
+              res.redirect(307, "/api/login");
+          })
+          .catch(function (err) {
+              res.status(401).json(err);
+          });
   });
 
   // DELETE USER
