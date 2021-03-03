@@ -18,6 +18,11 @@ module.exports = (app) => {
     );
   });
 
+  //Authentication middleware for login route
+  app.post("/api/login", passport.authenticate("local"), function (req, res) {
+    res.json(req.user);
+  });
+
   // CREATE NEW USER
   app.post("/api/users", (req, res) => {
     db.User.create({
