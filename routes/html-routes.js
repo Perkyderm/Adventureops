@@ -25,6 +25,6 @@ module.exports = function (app) {
   });
 
   app.get("/user", isAuthenticated, function (req, res) {
-    res.render("home");
+    res.render("home", req.user);
   });
 };
