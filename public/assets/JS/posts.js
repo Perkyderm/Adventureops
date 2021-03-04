@@ -71,12 +71,14 @@ document.addEventListener("DOMContentLoaded", (e) => {
     // Delete button
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "x";
+    deleteBtn.style.float = "right";
     deleteBtn.classList.add("delete", "btn", "btn-danger");
     deleteBtn.addEventListener("click", handlePostDelete);
 
     // Edit button
     const editBtn = document.createElement("button");
     editBtn.textContent = "EDIT";
+    editBtn.style.float = "right";
     editBtn.classList.add("delete", "btn", "btn-danger");
     editBtn.addEventListener("click", handlePostEdit);
 
@@ -87,9 +89,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
     // New post category
     const newPostCategory = document.createElement("h5");
     newPostCategory.textContent = post.type;
-    newPostCategory.style.float = "right";
+    //newPostCategory.style.float = "right";
     newPostCategory.style.fontWeight = "700";
-    newPostCategory.style.marginTop = "-15px";
 
     // New post card body
     const newPostCardBody = document.createElement("div");
@@ -99,15 +100,16 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const newPostBody = document.createElement("p");
 
     newPostBody.textContent = post.content;
+    newPostBody.style.color = "black";
 
     const formattedDate = new Date(post.createdAt).toLocaleDateString();
     newPostDate.textContent = ` (${formattedDate})`;
 
-    newPostCardHeading.appendChild(newPostDate);
     newPostCardHeading.appendChild(deleteBtn);
     newPostCardHeading.appendChild(editBtn);
     //newPostCardHeading.appendChild(newPostTitle);
     newPostCardHeading.appendChild(newPostCategory);
+    newPostCardHeading.appendChild(newPostDate);
     newPostCardBody.appendChild(newPostBody);
     newPostCard.appendChild(newPostCardHeading);
     newPostCard.appendChild(newPostCardBody);
