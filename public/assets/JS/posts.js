@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     let categoryString = category || "";
     if (categoryString) {
       categoryString = categoryString.replace(" ", "");
-      categoryString = `category/${categoryString}`;
+      categoryString = `type/${categoryString}`;
     }
 
     fetch(`/api/posts/${categoryString}`, {
@@ -81,12 +81,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
     editBtn.addEventListener("click", handlePostEdit);
 
     // New post info
-    const newPostTitle = document.createElement("h2");
+
     const newPostDate = document.createElement("small");
 
     // New post category
     const newPostCategory = document.createElement("h5");
-    newPostCategory.textContent = post.category;
+    newPostCategory.textContent = post.type;
     newPostCategory.style.float = "right";
     newPostCategory.style.fontWeight = "700";
     newPostCategory.style.marginTop = "-15px";
@@ -97,16 +97,16 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
     // New Post
     const newPostBody = document.createElement("p");
-    newPostTitle.textContent = post.title;
-    newPostBody.textContent = post.body;
+
+    newPostBody.textContent = post.content;
 
     const formattedDate = new Date(post.createdAt).toLocaleDateString();
     newPostDate.textContent = ` (${formattedDate})`;
 
-    newPostTitle.appendChild(newPostDate);
+    //newPostTitle.appendChild(newPostDate);
     newPostCardHeading.appendChild(deleteBtn);
     newPostCardHeading.appendChild(editBtn);
-    newPostCardHeading.appendChild(newPostTitle);
+    //newPostCardHeading.appendChild(newPostTitle);
     newPostCardHeading.appendChild(newPostCategory);
     newPostCardBody.appendChild(newPostBody);
     newPostCard.appendChild(newPostCardHeading);
@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       e.target.parentElement.parentElement.dataset.post
     );
     console.log("handlePostDelete -> currentPost", currentPost);
-    window.location.href = `/posts?post_id=${currentPost.id}`;
+    window.location.href = `/api/posts?post_id=${currentPost.id}`;
   };
 
   const displayEmpty = () => {

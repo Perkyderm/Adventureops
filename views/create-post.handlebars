@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col-sm-2 mt-4">
+                <a class="btn btn-light" href="/blog">Go to Blog</a>
+            </div>
+        </div>
+        <div class="col-md-5 offset-md-3">
+            <form id="cms">
+                <div class="form-group">
+                    <label for="body">Content:</label>
+                    <textarea class="form-control" rows="10" id="body"></textarea>
+                    <div class="form-group">
+                        <label for="category">Select Type:</label>
+                        <select class="custom-select" id="category">
+                            <option value="Hiking">Hiking</option>
+                            <option value="Camping">Camping</option>
+                            <option value="Climbing">Climbing</option>
+                        </select>
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-success submit btn-lg">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Custom Script -->
+<script src="js/create-post.js" type="text/javascript"></script>
