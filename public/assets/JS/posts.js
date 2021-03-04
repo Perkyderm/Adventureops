@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const formattedDate = new Date(post.createdAt).toLocaleDateString();
     newPostDate.textContent = ` (${formattedDate})`;
 
-    //newPostTitle.appendChild(newPostDate);
+    newPostCardHeading.appendChild(newPostDate);
     newPostCardHeading.appendChild(deleteBtn);
     newPostCardHeading.appendChild(editBtn);
     //newPostCardHeading.appendChild(newPostTitle);
