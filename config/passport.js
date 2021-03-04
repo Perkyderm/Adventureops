@@ -28,7 +28,9 @@ passport.use(
           });
         }
         // If none of the above, return the user
-        return done(null, dbUser);
+        delete dbUser.dataValues.password;
+        console.log(dbUser.dataValues);
+        return done(null, dbUser.dataValues);
       });
     }
   )
