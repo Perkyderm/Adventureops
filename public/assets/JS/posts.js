@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       e.target.parentElement.parentElement.dataset.post
     );
     console.log("handlePostDelete -> currentPost", currentPost);
-    window.location.href = `/cms?post_id=${currentPost.id}`;
+    window.location.href = `/posts?post_id=${currentPost.id}`;
   };
 
   const displayEmpty = () => {
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const messageH2 = document.createElement("h4");
     messageH2.style.textAlign = "center";
     messageH2.style.marginTop = "50px";
-    messageH2.innerHTML = `No posts yet for this category. <br>Click <a href="/cms">here</a> to make a new post.`;
+    messageH2.innerHTML = `No posts yet for this category. <br>Click <a href="/user-posts">here</a> to make a new post.`;
     postContainer.appendChild(messageH2);
   };
 
