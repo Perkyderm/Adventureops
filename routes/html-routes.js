@@ -7,20 +7,24 @@ module.exports = function (app) {
   app.get("/", (req, res) => {
     //If the user already has an account send them to the members page
     if (req.user) {
-      res.render("home");
+      res.redirect("/user");
     }
     res.redirect("/login");
   });
   app.get("/login", (req, res) => {
     if (req.user) {
-      res.render("home");
+      res.redirect("/user");
     }
     res.render("login");
   });
   app.get("/signup", (req, res) => {
     if (req.user) {
-      res.render("home");
+      res.redirect("/user");
     }
     res.render("signup");
+  });
+
+  app.get("/user", isAuthenticated, function (req, res) {
+    res.render("home");
   });
 };
