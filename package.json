@@ -18,18 +18,16 @@
   },
   "homepage": "https://github.com/Perkyderm/Project2#readme",
   "dependencies": {
-
-
+    "sequelize": "^6.5.0",
     "talkjs": "^0.14.3",
-
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.1",
     "express-session": "^1.17.1",
+    "lightgallery": "^1.10.0",
     "mysql2": "^2.2.5",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "sequelize": "^6.5.0",
     "unirest": "^0.6.0"
   }
 }
