@@ -27,4 +27,17 @@ module.exports = function (app) {
   app.get("/user", isAuthenticated, function (req, res) {
     res.render("home", req.user);
   });
+
+  app.get("/posts", (req, res) => {
+    if (req.user) {
+      res.redirect("/user-posts");
+    }
+    res.render("view-posts");
+  });
+
+
+
+  app.get("/user-posts", isAuthenticated, function (req, res) {
+    res.render("create-post", req.user);
+  });
 };
