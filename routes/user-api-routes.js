@@ -21,6 +21,11 @@ module.exports = (app) => {
     }).then((dbUser) => res.json(dbUser));
   });
 
+  app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect("/");
+  });
+
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     console.log(req.user);
     res.json(req.user);
