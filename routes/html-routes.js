@@ -1,4 +1,5 @@
 var path = require("path");
+const db = require("../models");
 
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
@@ -36,7 +37,32 @@ module.exports = function (app) {
   });
 
   app.get("/view-posts", (req, res) => {
-    return res.render("view-posts");
+    db.Post.findAll({
+      include: [db.User],
+    })
+      .then((data) => {
+        console.log("Success in getting posts:", data);
+        let posts = data.map((post) => {
+          let ret = {
+            id: post.id,
+            content: post.content,
+            date: new Date(post.createdAt).toLocaleDateString(),
+            type: post.type,
+            user: post.User.username,
+          };
+          return ret;
+        });
+        console.log(posts);
+        let cont;
+        if (!data.length) {
+          cont = false;
+        } else {
+          cont = true;
+        }
+        let obj = { cont: cont, posts: posts };
+        return res.render("view-posts", obj);
+      })
+      .catch((error) => console.error("Error:", error));
   });
 
   app.get("/user-posts", isAuthenticated, function (req, res) {
