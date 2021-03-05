@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   const handleCategoryChange = (e) => {
     const newPostCategory = e.target.value;
     console.log("handleCategoryChange -> newPostCategory", newPostCategory);
-    getPosts(newPostCategory.toLowerCase());
+    window.location.href = "./view-posts/" + newPostCategory.toLowerCase();
   };
   postCategorySelect.addEventListener("change", handleCategoryChange);
 });

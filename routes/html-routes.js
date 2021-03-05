@@ -36,8 +36,14 @@ module.exports = function (app) {
     return res.redirect("/view-posts");
   });
 
-  app.get("/view-posts", (req, res) => {
+  app.get("/view-posts/:type?", (req, res) => {
+    let query = {};
+    console.log(req.params);
+    if (req.params.type) {
+      query.type = req.params.type;
+    }
     db.Post.findAll({
+      where: query,
       include: [db.User],
     })
       .then((data) => {
