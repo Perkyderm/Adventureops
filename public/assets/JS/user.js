@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   const postContainer = document.querySelector(".post-container");
   const postCategorySelect = document.getElementById("category");
-  const postCategoryLocation = document.getElementById("createCategory");
 
   let posts;
 
@@ -69,6 +68,22 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const newPostCardHeading = document.createElement("div");
     newPostCardHeading.classList.add("card-header");
 
+    // Delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "x";
+    deleteBtn.classList.add("delete", "btn", "btn-danger");
+    deleteBtn.addEventListener("click", handlePostDelete);
+    deleteBtn.style.float = "right";
+    deleteBtn.style.marginInlineEnd = "10px";
+
+    // Edit button
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "EDIT";
+    editBtn.classList.add("delete", "btn", "btn-info");
+    editBtn.addEventListener("click", handlePostEdit);
+    editBtn.style.float = "right";
+    editBtn.style.marginInlineEnd = "10px";
+
     // New post info
 
     const newPostDate = document.createElement("small");
@@ -93,7 +108,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
     newPostDate.textContent = ` (${formattedDate})`;
 
     //newPostTitle.appendChild(newPostDate);
-
+    newPostCardHeading.appendChild(deleteBtn);
+    newPostCardHeading.appendChild(editBtn);
     //newPostCardHeading.appendChild(newPostTitle);
     newPostCardHeading.appendChild(newPostCategory);
     newPostCardBody.appendChild(newPostBody);
@@ -102,6 +118,22 @@ document.addEventListener("DOMContentLoaded", (e) => {
     newPostCard.setAttribute("data-post", JSON.stringify(post));
 
     return newPostCard;
+  };
+
+  const handlePostDelete = (e) => {
+    const currentPost = JSON.parse(
+      e.target.parentElement.parentElement.dataset.post
+    );
+    console.log("handlePostDelete -> currentPost", currentPost);
+    deletePost(currentPost.id);
+  };
+
+  const handlePostEdit = (e) => {
+    const currentPost = JSON.parse(
+      e.target.parentElement.parentElement.dataset.post
+    );
+    console.log("handlePostDelete -> currentPost", currentPost);
+    window.location.href = `/api/posts?post_id=${currentPost.id}`;
   };
 
   const displayEmpty = () => {
@@ -119,29 +151,4 @@ document.addEventListener("DOMContentLoaded", (e) => {
     getPosts(newPostCategory.toLowerCase());
   };
   postCategorySelect.addEventListener("change", handleCategoryChange);
-
-  const addOptions = (loc) => {
-    const option = document.createElement("option");
-    option.value = loc.name;
-    option.textContent = loc.name;
-    return option;
-  };
-  const locationListHandler = (e) => {
-    const type = e.target.value;
-    fetch(`/api/locations/${type}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Got", data);
-        createLocationSelect.innerHTML = "";
-        const locs = [];
-        data.forEach((loc) => locs.push(addOptions(loc)));
-        locs.forEach((option) => createLocationSelect.append(option));
-      });
-  };
-  createCategorySelect.addEventListener("change", locationListHandler);
 });

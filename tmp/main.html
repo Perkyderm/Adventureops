@@ -47,19 +47,59 @@
      <!-- Title of the website  -- -->
     <h1> Welcome Message</h1>
 
-    <form>
-        <!--{{!-- User Input to Post --}} -- -->
-        <input type="type">
-        <button type="Post" id='post' value="post">Post</button>
-    </form>
 
-    <!-- {{!-- generic feed --}} -->
-    <div class="container-genericFeed" id='genericFeed'>
-        <div class="row-genericFeed">
-            <div class="col-sm">
-                Generic Feed
-            </div>
+    <!-- {{!-- Feed --}} -->
+    <div class="container">
+    <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">From</label>
+  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+</div>
+</div>
+
+
+<!-- POST -->
+        <section class="container message lrgsc sectionstyle">
+    <div class="row">
+        <div class="col-xs-4">
+            <h1 style="color: #2C1C47;">Send a Message</h1>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" class="form-control" id="name"></input>
+            </div>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Post:</label>
+                <textarea class="form-control" id="message" rows="3"></textarea>
+                <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 mb-3">
+                    <button type="button" class="btn">Post</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
 
 
         <!--  {{!--Users Navbar for groups, trails, post --}} -- -->
@@ -111,38 +151,96 @@
             </li>
         </ul>
     </nav>
-    <!--Side Bar Toggle Button -- -->
-<div id="content">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
 
-            <button type="button" id="sidebarCollapse" class="btn btn-info">
-                <i class="fas fa-align-left"></i>
-                <span>Toggle Sidebar</span>
-            </button>
+</div>
 
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/logout">
+                Logout
+            </a>
+            <a class="navbar-brand" href="/user-posts">
+                Make Post
+            </a>
+            <a class="navbar-brand" href="/view-posts">
+                View Posts
+            </a>
         </div>
-    </nav>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h2>Welcome {{username}}</h2>
+        </div>
+    </div>
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-    <!-- chat box -->
- <div class="container-chatBox" >
-     <div class="row-chatBox" id='talkjs-container'>
-        <div class="col-sm">
-            <i>Loading chat...</i>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/logout">
+                Logout
+            </a>
+            <a class="navbar-brand" href="/user-posts">
+                Make Post
+            </a>
+            <a class="navbar-brand" href="/view-posts">
+                View Posts
+            </a>
         </div>
     </div>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h2>Welcome {{username}}</h2>
+        </div>
+    </div>
+</div>
+
+
+<h1>TESTTTTTTT</h1>
+<div class="container" id='feed'>
+    <div class="row">
+        <div class=" col-lg-6">
+            Your Feed
+        </div>
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <select class="custom-select" id="category">
+                            <option selected value="">All Types</option>
+                            <option value="Hiking">Hiking</option>
+                            <option value="Camping">Camping</option>
+                            <option value="Climbing">Climbing</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-light" href="/user-posts">New Post</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-light" href="/">Home</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 post-container">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Custom Script -->
+<script src="js/posts.js" type="text/javascript"></script>
+
 
 </body>
 <script src="../public/assets/JS/navbar.js"></script>
