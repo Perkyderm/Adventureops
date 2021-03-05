@@ -6,60 +6,51 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   const postContainer = document.querySelector(".post-container");
   const postCategorySelect = document.getElementById("category");
-  const postCategoryLocation = document.getElementById("createCategory");
 
   let posts;
 
   // Function to grab posts from the database
-  // const deleteBtns = document.querySelectorAll(".delete");
+  const getPosts = (category) => {
+    let categoryString = category || "";
+    if (categoryString) {
+      categoryString = categoryString.replace(" ", "");
+      categoryString = `type/${categoryString}`;
+    }
 
-  // if (deleteBtns) {
-  //   deleteBtns.forEach((button) => {
-  //     button.addEventListener("click", (e) => {
-  //       console.log("click");
-  //       handlePostDelete(e);
-  //     });
-  //   });
-  // }
+    fetch(`/api/posts/${categoryString}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Success in getting posts:", data);
+        posts = data;
+
+        if (!posts.length) {
+          displayEmpty();
+        } else {
+          initializeRows();
+        }
+      })
+      .catch((error) => console.error("Error:", error));
+  };
 
   // Function to make DELETE request for a post
-  // const deletePost = (id) => {
-  //   fetch(`/api/posts/${id}`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   }).then((response) => console.log("Deleted", response));
-  // };
+  const deletePost = (id) => {
+    fetch(`/api/posts/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => getPosts(postCategorySelect.value));
+  };
 
-  // // Getting initial list of posts
+  // Getting initial list of posts
+  getPosts();
 
-  // // Function to help construct the post HTML content inside blogContainer
-
-  // const handlePostDelete = (e) => {
-  //   const currentPost = e.target.parentElement.parentElement.dataset.post;
-  //   console.log(e.target.parentElement.parentElement);
-
-  //   console.log("handlePostDelete -> currentPost", currentPost);
-  //   deletePost(currentPost);
-  // };
-
-  // const editBtns = document.querySelectorAll(".edit");
-
-  // if (editBtns) {
-  //   editBtns.forEach((button) => {
-  //     button.addEventListener("click", (e) => {
-  //       console.log("click");
-  //       handlePostEdit(e);
-  //     });
-  //   });
-  // }
-  // const handlePostEdit = (e) => {
-  //   const currentPost = e.target.parentElement.parentElement.dataset.post;
-
-  //   console.log("handlePostDelete -> currentPost", currentPost);
-  //   console.log("Whoops, WIP");
-  //   window.location.href = `/user-posts?post_id=${currentPost}`;
+  // Function to help construct the post HTML content inside blogContainer
   const initializeRows = () => {
     postContainer.innerHTML = "";
     const postsToAdd = [];
@@ -76,6 +67,22 @@ document.addEventListener("DOMContentLoaded", (e) => {
     // Heading
     const newPostCardHeading = document.createElement("div");
     newPostCardHeading.classList.add("card-header");
+
+    // Delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "x";
+    deleteBtn.classList.add("delete", "btn", "btn-danger");
+    deleteBtn.addEventListener("click", handlePostDelete);
+    deleteBtn.style.float = "right";
+    deleteBtn.style.marginInlineEnd = "10px";
+
+    // Edit button
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "EDIT";
+    editBtn.classList.add("delete", "btn", "btn-info");
+    editBtn.addEventListener("click", handlePostEdit);
+    editBtn.style.float = "right";
+    editBtn.style.marginInlineEnd = "10px";
 
     // New post info
 
@@ -101,7 +108,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
     newPostDate.textContent = ` (${formattedDate})`;
 
     //newPostTitle.appendChild(newPostDate);
-
+    newPostCardHeading.appendChild(deleteBtn);
+    newPostCardHeading.appendChild(editBtn);
     //newPostCardHeading.appendChild(newPostTitle);
     newPostCardHeading.appendChild(newPostCategory);
     newPostCardBody.appendChild(newPostBody);
@@ -110,6 +118,22 @@ document.addEventListener("DOMContentLoaded", (e) => {
     newPostCard.setAttribute("data-post", JSON.stringify(post));
 
     return newPostCard;
+  };
+
+  const handlePostDelete = (e) => {
+    const currentPost = JSON.parse(
+      e.target.parentElement.parentElement.dataset.post
+    );
+    console.log("handlePostDelete -> currentPost", currentPost);
+    deletePost(currentPost.id);
+  };
+
+  const handlePostEdit = (e) => {
+    const currentPost = JSON.parse(
+      e.target.parentElement.parentElement.dataset.post
+    );
+    console.log("handlePostDelete -> currentPost", currentPost);
+    window.location.href = `/api/posts?post_id=${currentPost.id}`;
   };
 
   const displayEmpty = () => {
@@ -124,37 +148,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   const handleCategoryChange = (e) => {
     const newPostCategory = e.target.value;
     console.log("handleCategoryChange -> newPostCategory", newPostCategory);
-    window.location.href = "/view-posts/" + newPostCategory.toLowerCase();
+    getPosts(newPostCategory.toLowerCase());
   };
   postCategorySelect.addEventListener("change", handleCategoryChange);
-
-  //createLocation, createCategory
-  const createCategorySelect = document.getElementById("createCategory");
-  const createLocationSelect = document.getElementById("createLocation");
-
-  const addOptions = (loc) => {
-    const option = document.createElement("option");
-    option.value = loc.name;
-    option.textContent = loc.name;
-    return option;
-  };
-
-  const locationListHandler = (e) => {
-    const type = e.target.value;
-    fetch(`/api/locations/${type}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Got", data);
-        createLocationSelect.innerHTML = "";
-        const locs = [];
-        data.forEach((loc) => locs.push(addOptions(loc)));
-        locs.forEach((option) => createLocationSelect.append(option));
-      });
-  };
-  createCategorySelect.addEventListener("change", locationListHandler);
 });

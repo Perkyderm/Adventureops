@@ -31,7 +31,7 @@ $(document).ready(function () {
       .then(function (data) {
         let talkId = `abxyz${data.id}`;
         console.log(talkId);
-        window.location.replace("/user");
+        window.location.replace("/");
         // If there's an error, handle it by throwing up a bootstrap alert
       })
       .catch(handleLoginErr);
