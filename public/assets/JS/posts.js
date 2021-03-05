@@ -67,4 +67,35 @@ document.addEventListener("DOMContentLoaded", (e) => {
     window.location.href = "/view-posts/" + newPostCategory.toLowerCase();
   };
   postCategorySelect.addEventListener("change", handleCategoryChange);
+
+  //createLocation, createCategory
+  const createCategorySelect = document.getElementById("createCategory");
+  const createLocationSelect = document.getElementById("createLocation");
+
+  const addOptions = (loc) => {
+    const option = document.createElement("option");
+    option.value = loc.name;
+    option.textContent = loc.name;
+    return option;
+  };
+
+  const locationListHandler = (e) => {
+    const type = e.target.value;
+    fetch(`/api/locations/${type}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Got", data);
+        createLocationSelect.innerHTML = "";
+        const locs = [];
+        data.forEach((loc) => locs.push(addOptions(loc)));
+        locs.forEach((option) => createLocationSelect.append(option));
+      });
+  };
+
+  createCategorySelect.addEventListener("change", locationListHandler);
 });
