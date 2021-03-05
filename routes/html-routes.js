@@ -3,6 +3,7 @@ const db = require("../models");
 
 // Requiring our custom middleware for checking if a user is logged in
 var isAuthenticated = require("../config/middleware/isAuthenticated");
+const e = require("express");
 
 module.exports = function (app) {
   app.get("/", (req, res) => {
@@ -38,7 +39,7 @@ module.exports = function (app) {
 
   app.get("/view-posts/:type?", (req, res) => {
     let query = {};
-    console.log(req.params);
+    console.log("Were in", req.params);
     if (req.params.type) {
       query.type = req.params.type;
     }
@@ -47,7 +48,7 @@ module.exports = function (app) {
       include: [db.User],
     })
       .then((data) => {
-        console.log("Success in getting posts:", data);
+        //console.log("Success in getting posts:", data);
         let posts = data.map((post) => {
           let ret = {
             id: post.id,
@@ -59,13 +60,19 @@ module.exports = function (app) {
           return ret;
         });
         console.log(posts);
-        let cont;
+        let cont, type;
+        if (req.params.type) {
+          type = true;
+        } else {
+          type = false;
+        }
         if (!data.length) {
           cont = false;
         } else {
           cont = true;
         }
-        let obj = { cont: cont, posts: posts };
+        let obj = { cont: cont, type: type, posts: posts };
+
         return res.render("view-posts", obj);
       })
       .catch((error) => console.error("Error:", error));
