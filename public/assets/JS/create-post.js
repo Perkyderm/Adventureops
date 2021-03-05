@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       .then((response) => response.json())
       .then((data) => {
         console.log("Success in submitting post:", data);
-        window.location.href = "/view-posts";
+        window.location.href = "/home";
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     })
       .then(() => {
         console.log("Attempting update to post");
-        window.location.href = "/view-posts";
+        window.location.href = "/home";
       })
       .catch((error) => {
         console.error("Error:", error);
