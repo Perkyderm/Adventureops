@@ -26,9 +26,6 @@ module.exports = function (sequelize, DataTypes) {
     User.hasMany(models.Post, {
       onDelete: "cascade",
     });
-    User.belongsToMany(models.Location, {
-      through: "UserLocations",
-    });
   };
 
   User.prototype.validPassword = function (password) {
