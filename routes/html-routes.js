@@ -32,9 +32,9 @@ module.exports = function (app) {
 
   app.get("/posts", (req, res) => {
     if (req.user) {
-      return res.redirect("/user-posts");
+      return res.redirect("/view-posts");
     }
-    return res.redirect("/view-posts");
+    return res.redirect("/");
   });
 
   app.get("/view-posts/:type?", (req, res) => {
