@@ -44,7 +44,7 @@
 
 <bod>
      <!-- Title of the website  -- -->
-    <h1> Welcome Message {{Backend Come here and put data}}</h1>
+    <h1> Welcome</h1>
 
     <form>
         <!--  {{!-- User Input to Post --}} -- -->
@@ -129,7 +129,48 @@
     </nav>
 </div>
 
-</div>
+<script>
+        (function(t,a,l,k,j,s){
+        s=a.createElement('script');s.async=1;s.src="https://cdn.talkjs.com/talk.js";a.head.appendChild(s)
+        ;k=t.Promise;t.Talk={v:3,ready:{then:function(f){if(k)return new k(function(r,e){l.push([f,r,e])});l
+        .push([f])},catch:function(){return k&&new k()},c:l}};})(window,document,[]);
+        </script>
+    <script>
+        Talk.ready.then(function() {
+        var operator = "myapp_operator"
+        var userName = "ExampleApp Operator"
+        var email = "support@example.com"
+        var photoUrl = ""
+            // The core TalkJS lib has loaded, so let's identify the current user  to TalkJS.
+            
+            // Note: this code is exactly equal to the `var operator =` declaration in
+            // user.html
+            var me = new Talk.User({
+                // just hardcode any user id, as long as your real users don't have this id
+                id:operator,
+                name: userName ,
+                email: email,
+                photoUrl: "https://talkjs.com/images/logo.jpg",
+                welcomeMessage: "Hi there! How can I help you?"
+            });
+
+            // TODO: replace the appId below with the appId provided in the Dashboard
+            window.talkSession = new Talk.Session({
+                appId: "tcI8Y2qO",
+                me: me
+            });
+            
+            var inbox = talkSession.createInbox();
+            inbox.mount(document.getElementById("talkjs-container"));
+
+        });
+    </script>
+
+
+
+
+
+
 
 
 
@@ -142,11 +183,12 @@
 
     <!-- chat box -->
  <div class="container-chatBox" >
-     <div class="row-chatBox" id='talkjs-container'>
+     <div class="row-chatBox" id='talkjs-container' style="background-color:black !important; right:0;">
         <div class="col-sm">
             <i>Loading chat...</i>
         </div>
     </div>
+ </div>   
 
 </body>
 
