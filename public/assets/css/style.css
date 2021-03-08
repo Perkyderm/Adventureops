@@ -1,4 +1,11 @@
 /* side bar wrapper */
+body {
+    background: url("../img/background2.webp") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 .wrapper {
     display: flex;
     width: 100%;
@@ -27,10 +34,10 @@ a[data-toggle="collapse"] {
     transform: translateY(-50%);
 }
 
-body {
+/* body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
-}
+} */
 
 p {
     font-family: 'Poppins', sans-serif;
@@ -100,6 +107,7 @@ ul ul a {
     width: 15rem;
     margin-left: auto;
     margin-right: auto;
+    color: #4f74e3 ;
 }
 
 .row-baseMap {
@@ -118,4 +126,8 @@ ul ul a {
     bottom: 10px;
     border: 3px solid black;
    
+}
+
+.navbar navbar-expand-lg navbar-light bg-light{
+    color:green;
 }

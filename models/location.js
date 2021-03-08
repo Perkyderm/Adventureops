@@ -8,12 +8,12 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    longitude: {
-      type: DataTypes.INTEGER,
+    latitude: {
+      type: DataTypes.DECIMAL,
       allowNull: false,
     },
-    latitude: {
-      type: DataTypes.INTEGER,
+    longitude: {
+      type: DataTypes.DECIMAL,
       allowNull: false,
     },
   });
@@ -21,10 +21,8 @@ module.exports = function (sequelize, DataTypes) {
   Location.associate = (models) => {
     // We're saying that a Post should belong to an Author
     // A Post can't be created without an Author due to the foreign key constraint
-    Location.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false,
-      },
+    Location.hasMany(models.Post, {
+      onDelete: "cascade",
     });
   };
 

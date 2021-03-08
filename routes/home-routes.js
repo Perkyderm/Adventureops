@@ -5,12 +5,12 @@ module.exports = (app) => {
   // BOILER PLATE routes codes --- might change ???
 
   // FIND ALL
-  app.get("/api/users", (req, res) => {
+  app.get("/api/home", (req, res) => {
     res.json(db.User.findAll({ attributes: ["username", "id"] }));
   });
 
   // FIND ONE
-  app.get("/api/users/:id", (req, res) => {
+  app.get("/api/home/:id", (req, res) => {
     db.User.findOne({
       attributes: ["username", "id"],
       where: {
@@ -32,7 +32,7 @@ module.exports = (app) => {
   });
 
   // CREATE NEW USER --- maybe change route name to "/api/signup" in future
-  app.post("/api/users", (req, res) => {
+  app.post("/api/home", (req, res) => {
     db.User.create({
       username: req.body.username,
       password: req.body.password,
@@ -46,7 +46,7 @@ module.exports = (app) => {
   });
 
   // DELETE USER
-  app.delete("/api/users/:id", (req, res) => {
+  app.delete("/api/home/:id", (req, res) => {
     db.User.destroy({
       where: {
         id: req.params.id,
