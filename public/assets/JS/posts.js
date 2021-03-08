@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   const postContainer = document.querySelector(".post-container");
   const postCategorySelect = document.getElementById("category");
-  const postCategoryLocation = document.getElementById("createCategory");
 
   let posts;
 
