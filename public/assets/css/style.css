@@ -1,8 +1,7 @@
 /* side bar wrapper */
 body {
-  background-image: url("../img/background.jpeg");
+  background-image: url("../img/forestbk.png");
   background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .wrapper {
