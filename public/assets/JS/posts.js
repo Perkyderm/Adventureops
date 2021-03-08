@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   const postContainer = document.querySelector(".post-container");
   const postCategorySelect = document.getElementById("category");
+  const postLocationSelect = document.getElementById("location");
 
   let posts;
 
@@ -108,4 +109,16 @@ document.addEventListener("DOMContentLoaded", (e) => {
       });
   };
   createCategorySelect.addEventListener("change", locationListHandler);
+
+  const locationSelectListner = (e) => {
+    const loc = e.target.value;
+    console.log(loc);
+    console.log(document.title);
+    let type = document.title;
+    console.log(type);
+    //console.log("handleCategoryChange -> newPostCategory", newPostCategory);
+    window.location.href = `/home/${type}/${loc.toLowerCase()}`;
+  };
+
+  postLocationSelect.addEventListener("change", locationSelectListner);
 });

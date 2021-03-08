@@ -34,7 +34,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
   };
 
   const handlePostDelete = (e) => {
-    const currentPost = e.target.parentElement.parentElement.dataset.post;
+    const currentPost =
+      e.target.parentElement.parentElement.parentElement.parentElement.dataset
+        .post;
     console.log(e.target.parentElement.parentElement);
 
     console.log("handlePostDelete -> currentPost", currentPost);
