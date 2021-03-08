@@ -4,11 +4,11 @@
             <a class="navbar-brand" href="/logout">
                 Logout
             </a>
-            <a class="navbar-brand" href="/user-posts">
-                Make Post
+            <a class="navbar-brand" href="/user">
+                User
             </a>
-            <a class="navbar-brand" href="/view-posts">
-                View Posts
+            <a class="navbar-brand" href="/home">
+                Home
             </a>
         </div>
     </div>
@@ -30,23 +30,62 @@
 
 
     <div class="row">
-        <div class="col-md-7">
-            <div class="form-group">
+        <div class=" col-lg-6">
+            Your Feed
+        </div>
+        <div class="container">
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <select class="custom-select" id="category">
+                            <option selected value="All">All Types</option>
 
-                <select class="custom-select" id="category">
-                    <option selected value="All Types">All Types</option>
-                    <option value="Hiking">Hiking</option>
-                    {{!-- {{#each}} --}}
-                    {{!-- <option value="{{type}}">{{type}}</option> --}}
-                    {{!-- {{/each}} --}}
-                </select>
-                <label for="location">Select Location:</label>
-                <select class="custom-select" id="location">
-                    {{!-- {{#each}}
-                    <option value="{{location}}">{{location}}</option>
-                    {{/each}} --}}
-                </select>
-                <div class="col-md-12 post-container">
+                            {{#each types}}
+                            <option value="{{type}}">{{type}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Select Location:</label>
+                        <select class="custom-select" id="location">
+                            <option value="">Selcet a location</option>
+                            {{#if type}}
+                            {{#each locations}}
+                            <option value="{{location}}">{{location}}</option>
+                            {{/each}}
+                            {{/if}}
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6 post-container">
+                    {{#if cont}}
+                    {{#each posts}}
+                    <div class="card" data-post="{{id}}">
+                        <div class="card-header">
+                            <h5 style="float: right; font-weight: 700; margin-inline-end: 10px;">{{type}}</h5>
+                            <h5 style="font-weight: 700;">{{user}}</h5>
+                            <small> ({{date}})</small>
+                            <small style="float: right"> ({{location}})</small>
+
+                        </div>
+                        <div class="card-body">
+                            <p style="color: black;">{{content}}</p>
+                        </div>
+                    </div>
+
+
+
+                    {{/each}}
+                    {{/if}}
+
+                    {{#unless cont}}
+                    <h4>No posts yet for this category. <br>Use the form below to make a new post.
+                    </h4>
+
+                    {{/unless}}
                 </div>
             </div>
         </div>
@@ -60,17 +99,17 @@
                     <div class="form-group" style="max-width: fit-content;">
                         <label for="category">Select Type:</label>
                         <select class="custom-select" id="createCategory">
-                            <option value="Hiking">Hiking</option>
-                            {{!-- {{#each}}
+
+                            {{#each types}}
                             <option value="{{type}}">{{type}}</option>
-                            {{/each}} --}}
+                            {{/each}}
                         </select>
 
                         <br>
                         <label for="location">Select Location:</label>
                         <select class="custom-select" id="createLocation">
                             <option value="">Selcet a location</option>
-                            <option value="greece">Kalymnos</option>
+
                             {{!-- {{#each}}
                             <option value="{{location}}">{{location}}</option>
                             {{/each}} --}}
@@ -92,5 +131,21 @@
 
 
 <!-- Custom Script -->
+
+
+{{#if type}}
+{{#if loc}}
+<script src="../../js/posts.js" type="text/javascript"></script>
+<script src="../../js/create-post.js" type="text/javascript"></script>
+{{/if}}
+{{#unless loc}}
+<script src="../js/posts.js" type="text/javascript"></script>
+<script src="../js/create-post.js" type="text/javascript"></script>
+{{/unless}}
+{{/if}}
+
+{{#unless type}}
 <script src="js/posts.js" type="text/javascript"></script>
 <script src="js/create-post.js" type="text/javascript"></script>
+
+{{/unless}}

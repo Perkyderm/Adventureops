@@ -1,5 +1,6 @@
 /* side bar wrapper */
 body {
+<<<<<<< HEAD
   background-image: url("../img/login\ page.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -7,6 +8,10 @@ body {
   background-attachment: fixed;
   background-color: #464646;
   max-width: 767px;
+=======
+  background-image: url("../img/forestbk.png");
+  background-repeat: no-repeat;
+>>>>>>> 60eff8425181cf763e0b6c4cdf06aa6d91fe07df
 }
 
 .wrapper {

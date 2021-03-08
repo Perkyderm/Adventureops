@@ -1,3 +1,5 @@
+USE project2;
+
 INSERT INTO locations (type, name, latitude, longitude, createdAt, updatedAt)
 VALUES ('Climbing',"Yosemite National Park, USA",37.8651,119.5383, "2021-03-03 19:06:13", "2021-03-03 19:06:13");
 
