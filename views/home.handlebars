@@ -5,7 +5,10 @@
                 Logout
             </a>
             <a class="navbar-brand" href="/user">
-                View Posts
+                User
+            </a>
+            <a class="navbar-brand" href="/home">
+                Home
             </a>
         </div>
     </div>
@@ -131,11 +134,18 @@
 
 
 {{#if type}}
+{{#if loc}}
+<script src="../../js/posts.js" type="text/javascript"></script>
+<script src="../../js/create-post.js" type="text/javascript"></script>
+{{/if}}
+{{#unless loc}}
 <script src="../js/posts.js" type="text/javascript"></script>
 <script src="../js/create-post.js" type="text/javascript"></script>
+{{/unless}}
 {{/if}}
 
 {{#unless type}}
 <script src="js/posts.js" type="text/javascript"></script>
 <script src="js/create-post.js" type="text/javascript"></script>
+
 {{/unless}}

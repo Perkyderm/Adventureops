@@ -26,11 +26,15 @@ module.exports = function (app) {
     return res.render("signup");
   });
 
-  app.get("/home/:type?", isAuthenticated, function (req, res) {
+  app.get("/home/:type?/:location?", isAuthenticated, function (req, res) {
     let query = {};
     console.log("Were in", req.params);
+
     if (req.params.type) {
       query.type = req.params.type.replace("-", "/");
+      if (req.params.location) {
+        query["$Location.name$"] = req.params.location;
+      }
     }
     db.Post.findAll({
       where: query,
@@ -50,18 +54,23 @@ module.exports = function (app) {
           return ret;
         });
         console.log(posts);
-        let cont, type;
+        let obj = { posts: posts };
         if (req.params.type) {
-          type = true;
+          obj.type = true;
+          obj.title = req.params.type;
         } else {
-          type = false;
+          obj.type = false;
+        }
+        if (req.params.location) {
+          obj.loc = true;
+        } else {
+          obj.loc = false;
         }
         if (!data.length) {
-          cont = false;
+          obj.cont = false;
         } else {
-          cont = true;
+          obj.cont = true;
         }
-        let obj = { cont: cont, type: type, posts: posts };
 
         db.Location.findAll({
           attributes: ["type"],
@@ -72,7 +81,7 @@ module.exports = function (app) {
           let opts = types.map((post) => post.dataValues);
           console.log(opts);
           obj.types = opts;
-          if (type) {
+          if (obj.type) {
             db.Location.findAll({
               where: { type: req.params.type },
             }).then((locs) => {
