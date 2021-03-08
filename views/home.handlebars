@@ -30,37 +30,31 @@
 
 
     <div class="row">
-        <div class=" col-lg-6">
-            Your Feed
-        </div>
-        <div class="container">
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <select class="custom-select" id="category">
-                            <option selected value="All">All Types</option>
 
-                            {{#each types}}
-                            <option value="{{type}}">{{type}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="location">Select Location:</label>
-                        <select class="custom-select" id="location">
-                            <option value="">Selcet a location</option>
-                            {{#if type}}
-                            {{#each locations}}
-                            <option value="{{location}}">{{location}}</option>
-                            {{/each}}
-                            {{/if}}
-                        </select>
-                    </div>
-                </div>
+     
 
-            </div>
-            <div class="row">
-                <div class="col-md-6 post-container">
+
+        <div class="col-md-7">
+            <div class="form-group">
+                <select class="custom-select" id="category">
+                    <option selected value="All">All Types</option>
+
+                    {{#each types}}
+                    <option value="{{type}}">{{type}}</option>
+                    {{/each}}
+                </select>
+
+                <label for="location">Select Location:</label>
+                <select class="custom-select" id="location">
+                    <option value="">Selcet a location</option>
+                    {{#if type}}
+                    {{#each locations}}
+                    <option value="{{location}}">{{location}}</option>
+                    {{/each}}
+                    {{/if}}
+                </select>
+                <div class="col-md-12 post-container">
+                
                     {{#if cont}}
                     {{#each posts}}
                     <div class="card" data-post="{{id}}">
@@ -89,6 +83,7 @@
                 </div>
             </div>
         </div>
+
 
         <div class="col-md-5">
             <form id="cms">
