@@ -14,7 +14,7 @@ const path = require("path");
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "./public/assets")));
+app.use(express.static(path.join(__dirname, "/public/assets")));
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
