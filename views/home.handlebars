@@ -41,9 +41,11 @@
                     <div class="form-group">
                         <label for="location">Select Location:</label>
                         <select class="custom-select" id="location">
-                            {{!-- {{#each}}
+                            {{#if type}}
+                            {{#each locations}}
                             <option value="{{location}}">{{location}}</option>
-                            {{/each}} --}}
+                            {{/each}}
+                            {{/if}}
                         </select>
                     </div>
                 </div>
@@ -55,16 +57,19 @@
                     {{#each posts}}
                     <div class="card" data-post="{{id}}">
                         <div class="card-header">
-                            {{!-- <button class="delete btn btn-danger" style="float: right;">X</button>
-                            <button class="edit btn btn-primary" style="float: right;">EDIT</button> --}}
-                            <small style="float: right;"> ({{date}})</small>
+                            <h5 style="float: right; font-weight: 700; margin-inline-end: 10px;">{{type}}</h5>
                             <h5 style="font-weight: 700;">{{user}}</h5>
-                            <p>{{type}}</p>
+                            <small> ({{date}})</small>
+                            <small style="float: right"> ({{location}})</small>
+
                         </div>
                         <div class="card-body">
                             <p style="color: black;">{{content}}</p>
                         </div>
                     </div>
+
+
+
                     {{/each}}
                     {{/if}}
 

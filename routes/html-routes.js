@@ -45,6 +45,7 @@ module.exports = function (app) {
             date: new Date(post.createdAt).toLocaleDateString(),
             type: post.type,
             user: post.User.username,
+            location: post.Location.name,
           };
           return ret;
         });
@@ -67,12 +68,24 @@ module.exports = function (app) {
           include: [{ model: db.Post, attributes: [] }],
           group: ["type"],
         }).then((types) => {
-          console.log(types);
+          //console.log(types);
           let opts = types.map((post) => post.dataValues);
           console.log(opts);
           obj.types = opts;
-
-          return res.render("home", obj);
+          if (type) {
+            db.Location.findAll({
+              where: { type: req.params.type },
+            }).then((locs) => {
+              let locations = locs.map((loc) => {
+                return { location: loc.dataValues.name };
+              });
+              console.log(locations);
+              obj.locations = locations;
+              return res.render("home", obj);
+            });
+          } else {
+            return res.render("home", obj);
+          }
         });
       })
       .catch((error) => console.error("Error:", error));
@@ -99,6 +112,7 @@ module.exports = function (app) {
             date: new Date(post.createdAt).toLocaleDateString(),
             type: post.type,
             user: post.User.username,
+            location: post.Location.name,
           };
           return ret;
         });
@@ -121,7 +135,7 @@ module.exports = function (app) {
           include: [{ model: db.User, attributes: [] }],
           group: ["type"],
         }).then((types) => {
-          console.log(types);
+          //console.log(types);
           let opts = types.map((post) => post.dataValues);
           console.log(opts);
           obj.types = opts;

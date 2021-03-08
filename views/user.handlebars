@@ -50,11 +50,39 @@
                     {{#each posts}}
                     <div class="card" data-post="{{id}}">
                         <div class="card-header">
-                            <button class="delete btn btn-danger" style="float: right;">X</button>
-                            <button class="edit btn btn-primary" style="float: right;">EDIT</button>
-                            <h5 style="font-weight: 700;">{{user}}</h5>
-                            <p>{{type}}</p>
-                            <small style="float: right;"> ({{date}})</small>
+                            <div class="row">
+                                <div class="col justify-content-start">
+                                    <h5 style="font-weight: 700;">{{user}}</h5>
+                                </div>
+                                <div class="col justify-content-end">
+                                    <button class="delete btn btn-danger float-end me-1 w-auto">x</button>
+                                    <button class="delete btn btn-info float-end me-1 w-auto">EDIT</button>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col justify-content-start">
+                                    <small> ({{date}})</small>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col justify-content-end">
+                                            <h5 class="float-end me-1" style="font-weight: 700;">
+                                                {{type}}</h5>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col justify-content-end"><small class="float-end">
+                                                ({{location}})</small></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
                         </div>
                         <div class="card-body">
                             <p style="color: black;">{{content}}</p>
