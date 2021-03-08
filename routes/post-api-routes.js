@@ -36,8 +36,16 @@ module.exports = (app) => {
 
   // CREATE NEW POST
   app.post("/api/posts", (req, res) => {
+    console.log(req.body);
     req.body.UserId = req.user.id;
-    db.Post.create(req.body).then((dbPost) => res.json(dbPost));
+    db.Location.findOne({
+      attributes: ["id"],
+      where: { name: req.body.location },
+    }).then((locId) => {
+      console.log(locId.dataValues.id);
+      req.body.LocationId = locId.dataValues.id;
+      db.Post.create(req.body).then((dbPost) => res.json(dbPost));
+    });
   });
 
   // UPDATES POST

@@ -14,10 +14,18 @@
         crossorigin="anonymous"></script>
 
     {{!-- CSS --}}
+    {{#if type}}
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    {{/if}}
+
+    {{#unless type}}
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+    {{/unless}}
+
 </head>
 
-{{{body}}}
+<body>
+    {{{body}}}
 
 </body>
 

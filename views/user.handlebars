@@ -4,12 +4,10 @@
             <a class="navbar-brand" href="/logout">
                 Logout
             </a>
-            <a class="navbar-brand" href="/user-posts">
+            <a class="navbar-brand" href="/home">
                 Make Post
             </a>
-            <a class="navbar-brand" href="/view-posts">
-                View Posts
-            </a>
+
         </div>
     </div>
 </nav>
@@ -33,16 +31,66 @@
                     <div class="form-group">
                         <select class="custom-select" id="category">
                             <option selected value="">All Types</option>
-                            <option value="Hiking">Hiking</option>
-                            <option value="Camping">Camping</option>
-                            <option value="Climbing">Climbing</option>
+                            {{#each types}}
+                            <option value="{{type}}">{{type}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div>
 
             </div>
             <div class="row">
-                <div class="col-md-8 post-container">
+                <div class="col-md-6 post-container">
+                    {{#if cont}}
+                    {{#each posts}}
+                    <div class="card" data-post="{{id}}">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col justify-content-start">
+                                    <h5 style="font-weight: 700;">{{user}}</h5>
+                                </div>
+                                <div class="col justify-content-end">
+                                    <button class="delete btn btn-danger float-end me-1 w-auto">x</button>
+                                    <button class="delete btn btn-info float-end me-1 w-auto">EDIT</button>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col justify-content-start">
+                                    <small> ({{date}})</small>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <div class="col justify-content-end">
+                                            <h5 class="float-end me-1" style="font-weight: 700;">
+                                                {{type}}</h5>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col justify-content-end"><small class="float-end">
+                                                ({{location}})</small></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <p style="color: black;">{{content}}</p>
+                        </div>
+                    </div>
+                    {{/each}}
+                    {{/if}}
+
+                    {{#unless cont}}
+                    <h4>No posts yet for this category. <br>Use the form below to make a new post.
+                    </h4>
+
+                    {{/unless}}
                 </div>
             </div>
         </div>
@@ -51,4 +99,10 @@
 
 
 <!-- Custom Script -->
+{{#if type}}
+<script src="../js/user.js" type="text/javascript"></script>
+{{/if}}
+
+{{#unless type}}
 <script src="js/user.js" type="text/javascript"></script>
+{{/unless}}

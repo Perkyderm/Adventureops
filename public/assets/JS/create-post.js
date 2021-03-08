@@ -43,6 +43,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   //const titleInput = document.getElementById("title");
   const cmsForm = document.getElementById("cms");
   const postCategorySelect = document.getElementById("createCategory");
+  const locationSelect = document.getElementById("createLocation");
 
   // Set default value for the category
   postCategorySelect.value = "Personal";
@@ -58,6 +59,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       //title: titleInput.value.trim(),
       content: bodyInput.value.trim(),
       type: postCategorySelect.value,
+      location: locationSelect.value,
     };
     console.log("handleFormSubmit -> newPost", newPost);
 
