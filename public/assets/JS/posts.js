@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   const postContainer = document.querySelector(".post-container");
   const postCategorySelect = document.getElementById("category");
-  const postCategoryLocation = document.getElementById("createCategory");
 
   let posts;
 
@@ -36,16 +35,6 @@ document.addEventListener("DOMContentLoaded", (e) => {
         }
       })
       .catch((error) => console.error("Error:", error));
-  };
-
-  // Function to make DELETE request for a post
-  const deletePost = (id) => {
-    fetch(`/api/posts/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(() => getPosts(postCategorySelect.value));
   };
 
   // Getting initial list of posts
@@ -119,29 +108,4 @@ document.addEventListener("DOMContentLoaded", (e) => {
     getPosts(newPostCategory.toLowerCase());
   };
   postCategorySelect.addEventListener("change", handleCategoryChange);
-
-  const addOptions = (loc) => {
-    const option = document.createElement("option");
-    option.value = loc.name;
-    option.textContent = loc.name;
-    return option;
-  };
-  const locationListHandler = (e) => {
-    const type = e.target.value;
-    fetch(`/api/locations/${type}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Got", data);
-        createLocationSelect.innerHTML = "";
-        const locs = [];
-        data.forEach((loc) => locs.push(addOptions(loc)));
-        locs.forEach((option) => createLocationSelect.append(option));
-      });
-  };
-  createCategorySelect.addEventListener("change", locationListHandler);
 });
