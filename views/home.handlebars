@@ -45,6 +45,7 @@
                     <div class="form-group">
                         <label for="location">Select Location:</label>
                         <select class="custom-select" id="location">
+                            <option value="">Selcet a location</option>
                             {{#if type}}
                             {{#each locations}}
                             <option value="{{location}}">{{location}}</option>
@@ -105,7 +106,7 @@
                         <label for="location">Select Location:</label>
                         <select class="custom-select" id="createLocation">
                             <option value="">Selcet a location</option>
-                            <option value="greece">Kalymnos</option>
+
                             {{!-- {{#each}}
                             <option value="{{location}}">{{location}}</option>
                             {{/each}} --}}
