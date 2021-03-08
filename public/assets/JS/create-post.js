@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   const bodyInput = document.getElementById("body");
   //const titleInput = document.getElementById("title");
   const cmsForm = document.getElementById("cms");
-  const postCategorySelect = document.getElementById("category");
+  const postCategorySelect = document.getElementById("createCategory");
 
   // Set default value for the category
   postCategorySelect.value = "Personal";

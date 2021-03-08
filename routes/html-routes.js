@@ -26,62 +26,90 @@ module.exports = function (app) {
     return res.render("signup");
   });
 
-  app.get("/home", isAuthenticated, function (req, res) {
-    return res.render("home", req.user);
-  });
-
-  app.get("/home", (req, res) => {
-    if (req.user) {
-      return res.redirect("/view-posts");
+  app.get("/home/:type?", isAuthenticated, function (req, res) {
+    let query = {};
+    console.log("Were in", req.params);
+    if (req.params.type) {
+      query.type = req.params.type;
     }
-    return res.redirect("/");
+    db.Post.findAll({
+      where: query,
+      include: [db.User, db.Location],
+    })
+      .then((data) => {
+        //console.log("Success in getting posts:", data);
+        let posts = data.map((post) => {
+          let ret = {
+            id: post.id,
+            content: post.content,
+            date: new Date(post.createdAt).toLocaleDateString(),
+            type: post.type,
+            user: post.User.username,
+          };
+          return ret;
+        });
+        console.log(posts);
+        let cont, type;
+        if (req.params.type) {
+          type = true;
+        } else {
+          type = false;
+        }
+        if (!data.length) {
+          cont = false;
+        } else {
+          cont = true;
+        }
+        let obj = { cont: cont, type: type, posts: posts };
+
+        return res.render("home", obj);
+      })
+      .catch((error) => console.error("Error:", error));
+    //return res.redirect("/login");
   });
 
-  // app.get("/view-posts/:type?", (req, res) => {
-  //   let query = {};
-  //   console.log("Were in", req.params);
-  //   if (req.params.type) {
-  //     query.type = req.params.type;
-  //   }
-  //   db.Post.findAll({
-  //     where: query,
-  //     include: [db.User],
-  //   })
-  //     .then((data) => {
-  //       //console.log("Success in getting posts:", data);
-  //       let posts = data.map((post) => {
-  //         let ret = {
-  //           id: post.id,
-  //           content: post.content,
-  //           date: new Date(post.createdAt).toLocaleDateString(),
-  //           type: post.type,
-  //           user: post.User.username,
-  //         };
-  //         return ret;
-  //       });
-  //       console.log(posts);
-  //       let cont, type;
-  //       if (req.params.type) {
-  //         type = true;
-  //       } else {
-  //         type = false;
-  //       }
-  //       if (!data.length) {
-  //         cont = false;
-  //       } else {
-  //         cont = true;
-  //       }
-  //       let obj = { cont: cont, type: type, posts: posts };
+  app.get("/user/:type?", isAuthenticated, (req, res) => {
+    let query = {};
+    console.log("Were in", req.params);
+    if (req.params.type) {
+      query.type = req.params.type;
+    }
+    //query["User.username"] = req.user.username;
+    db.Post.findAll({
+      where: query,
+      include: [
+        { model: db.User, where: { username: req.user.username } },
+        db.Location,
+      ],
+    })
+      .then((data) => {
+        //console.log("Success in getting posts:", data);
+        let posts = data.map((post) => {
+          let ret = {
+            id: post.id,
+            content: post.content,
+            date: new Date(post.createdAt).toLocaleDateString(),
+            type: post.type,
+            user: post.User.username,
+          };
+          return ret;
+        });
+        console.log(posts);
+        let cont, type;
+        if (req.params.type) {
+          type = true;
+        } else {
+          type = false;
+        }
+        if (!data.length) {
+          cont = false;
+        } else {
+          cont = true;
+        }
+        let obj = { cont: cont, type: type, posts: posts };
 
-  //       return res.render("view-posts", obj);
-  //     })
-  //     .catch((error) => console.error("Error:", error));
-  //     return res.redirect("/user");
-  //   }
-  //   return res.redirect("/home");
-  // });
-
-  app.get("/user", (req, res) => {
-    return res.render("user");
+        return res.render("user", obj);
+      })
+      .catch((error) => console.error("Error:", error));
   });
 };
