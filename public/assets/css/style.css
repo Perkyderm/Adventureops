@@ -1,8 +1,12 @@
 /* side bar wrapper */
 body {
-  background-image: url("../img/background.jpeg");
+  background-image: url("../img/login\ page.png");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position:center center;
+  background-attachment: fixed;
+  background-color: #464646;
+  max-width: 767px;
 }
 
 .wrapper {
@@ -107,12 +111,64 @@ ul ul a {
   border: 3px solid black;
 }
 
-.navbar {
+/* .navbar {
   background-color: green;
-}
+} */
 
 .card {
   margin-top: 5px;
   margin-bottom: 5px;
   opacity: 85%;
+}
+
+h2{
+  color:#D3D3D3;
+  text-decoration: underline;
+ margin: 0;
+ position: absolute;
+ top: 30%;
+ left: 50%;
+ margin-right: -50%;
+ transform: translate(-50%, -50%)
+  
+}
+
+.userName{
+  color:grey;
+  text-decoration: underline;
+  font-weight: bold;
+  text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 8em
+}
+
+.password{
+   color:grey;
+   text-decoration: underline;
+   font-weight: bold;
+   text-align: center;
+}
+
+.login{
+  color: #FFFFE0;
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+.btn btn-default{
+ background-color: #e7e7e7;
+}
+
+p{
+ color: #e7e7e7;
+ border: 2px solid;
+ width: 5rem;
+ background-color: #ff8c24;
 }
