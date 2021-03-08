@@ -50,7 +50,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (!bodyInput.value) {
+    if (
+      !bodyInput.value ||
+      !postCategorySelect.value ||
+      !locationSelect.value
+    ) {
       alert("Your post is missing some content");
     }
 

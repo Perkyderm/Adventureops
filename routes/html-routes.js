@@ -26,7 +26,7 @@ module.exports = function (app) {
     return res.render("signup");
   });
 
-  app.get("/home/:type?", isAuthenticated, function (req, res) {
+  app.get("/home/:type?/:location?", isAuthenticated, function (req, res) {
     let query = {};
     console.log("Were in", req.params);
     if (req.params.type) {
