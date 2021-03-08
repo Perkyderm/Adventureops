@@ -83,7 +83,7 @@ module.exports = function (app) {
           obj.types = opts;
           if (obj.type) {
             db.Location.findAll({
-              where: { type: req.params.type },
+              where: { type: req.params.type.replace("-", "/") },
             }).then((locs) => {
               let locations = locs.map((loc) => {
                 return { location: loc.dataValues.name };

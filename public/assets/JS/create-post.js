@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     return option;
   };
   const locationListHandler = (e) => {
-    const type = e.target.value;
+    const type = e.target.value.replaceAll("/", "-");
     fetch(`/api/locations/${type}`, {
       method: "GET",
       headers: {
