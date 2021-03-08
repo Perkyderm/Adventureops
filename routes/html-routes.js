@@ -30,7 +30,7 @@ module.exports = function (app) {
     let query = {};
     console.log("Were in", req.params);
     if (req.params.type) {
-      query.type = req.params.type;
+      query.type = req.params.type.replace("-", "/");
     }
     db.Post.findAll({
       where: query,
@@ -62,7 +62,18 @@ module.exports = function (app) {
         }
         let obj = { cont: cont, type: type, posts: posts };
 
-        return res.render("home", obj);
+        db.Location.findAll({
+          attributes: ["type"],
+          include: [{ model: db.Post, attributes: [] }],
+          group: ["type"],
+        }).then((types) => {
+          console.log(types);
+          let opts = types.map((post) => post.dataValues);
+          console.log(opts);
+          obj.types = opts;
+
+          return res.render("home", obj);
+        });
       })
       .catch((error) => console.error("Error:", error));
     //return res.redirect("/login");
@@ -72,15 +83,12 @@ module.exports = function (app) {
     let query = {};
     console.log("Were in", req.params);
     if (req.params.type) {
-      query.type = req.params.type;
+      query.type = req.params.type.replace("-", "/");
     }
     //query["User.username"] = req.user.username;
     db.Post.findAll({
       where: query,
-      include: [
-        { model: db.User, where: { username: req.user.username } },
-        db.Location,
-      ],
+      include: [{ model: db.User, where: { id: req.user.id } }, db.Location],
     })
       .then((data) => {
         //console.log("Success in getting posts:", data);
@@ -107,8 +115,19 @@ module.exports = function (app) {
           cont = true;
         }
         let obj = { cont: cont, type: type, posts: posts };
+        db.Post.findAll({
+          attributes: ["type"],
+          where: { "$User.id$": req.user.id },
+          include: [{ model: db.User, attributes: [] }],
+          group: ["type"],
+        }).then((types) => {
+          console.log(types);
+          let opts = types.map((post) => post.dataValues);
+          console.log(opts);
+          obj.types = opts;
 
-        return res.render("user", obj);
+          return res.render("user", obj);
+        });
       })
       .catch((error) => console.error("Error:", error));
   });

@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
   // };
 
   const handleCategoryChange = (e) => {
-    const newPostCategory = e.target.value;
+    const newPostCategory = e.target.value.replaceAll("/", "-");
     console.log("handleCategoryChange -> newPostCategory", newPostCategory);
     window.location.href = "/home/" + newPostCategory.toLowerCase();
   };
@@ -91,7 +91,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   const locationListHandler = (e) => {
     const type = e.target.value;
-    fetch(`/api/locations/${type}`, {
+    let tmp = type.replaceAll("/", "-");
+
+    fetch(`/api/locations/${tmp}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

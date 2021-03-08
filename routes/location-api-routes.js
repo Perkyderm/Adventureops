@@ -6,14 +6,18 @@ module.exports = (app) => {
   // FIND ALL
   app.get("/api/locations/:type?", (req, res) => {
     const query = {};
+
+    let inc = req.params.type;
+    inc = inc.replace("-", "/");
     if (req.params.type) {
-      query.type = req.param.type;
+      query.type = inc;
     }
 
     db.Location.findAll({
       where: query,
-      include: [db.User],
-    }).then((dbLocation) => res.json(dbLocation));
+    }).then((dbLocation) => {
+      return res.json(dbLocation);
+    });
   });
 
   // FIND ONE

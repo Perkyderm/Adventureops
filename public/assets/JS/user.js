@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       },
     }).then((response) => {
       console.log("Deleted", response);
-      window.location.href = "/home";
+      window.location.href = "/user";
     });
   };
 
@@ -60,9 +60,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
   };
 
   const handleCategoryChange = (e) => {
-    const newPostCategory = e.target.value;
+    const newPostCategory = e.target.value.replaceAll("/", "-");
     console.log("handleCategoryChange -> newPostCategory", newPostCategory);
-    window.location.href = "/home/" + newPostCategory.toLowerCase();
+    window.location.href = "/user/" + newPostCategory.toLowerCase();
   };
   postCategorySelect.addEventListener("change", handleCategoryChange);
 });

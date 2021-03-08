@@ -31,9 +31,9 @@
                     <div class="form-group">
                         <select class="custom-select" id="category">
                             <option selected value="">All Types</option>
-                            <option value="Hiking">Hiking</option>
-                            <option value="Camping">Camping</option>
-                            <option value="Climbing">Climbing</option>
+                            {{#each types}}
+                            <option value="{{type}}">{{type}}</option>
+                            {{/each}}
                         </select>
                     </div>
                 </div>
