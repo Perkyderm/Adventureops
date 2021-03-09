@@ -1,15 +1,13 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default sticky-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/logout">
-                Logout
-            </a>
-            <a class="navbar-brand" href="/user">
-                User
-            </a>
-            <a class="navbar-brand" href="/home">
-                Home
-            </a>
+            <a class="navbar-brand" style="font-weight: bolder;"><img src="/img/mtnicon.png" alt="icon"
+                    style="height: 10%; width:10%">Adventureops</a>
+            <a class="navbar-brand" href="/logout">Logout</a>
+            <a class="navbar-brand" href="/user">Your Posts</a>
+            <a class="navbar-brand" href="/home">Home</a>
+
+
         </div>
     </div>
 </nav>
@@ -36,7 +34,9 @@
 
         <div class="col-md-7">
             <div class="form-group">
+                <label for="category" style="font-weight: bold;">Select Category:</label>
                 <select class="custom-select" id="category">
+
                     <option selected value="All">All Types</option>
 
                     {{#each types}}
@@ -44,9 +44,9 @@
                     {{/each}}
                 </select>
 
-                <label for="location">Select Location:</label>
+                <label for="location" style="font-weight: bold;">Select Location:</label>
                 <select class="custom-select" id="location">
-                    <option value="">Selcet a location</option>
+                    <option value=""></option>
                     {{#if type}}
                     {{#each locations}}
                     <option value="{{location}}">{{location}}</option>
@@ -96,7 +96,7 @@
                     <label for="body">Content:</label>
                     <textarea class="form-control" rows="10" id="body"></textarea>
                     <div class="form-group" style="max-width: fit-content;">
-                        <label for="category">Select Type:</label>
+                        <label for="category" style="font-weight: bold;">Select Category:</label>
                         <select class="custom-select" id="createCategory">
 
                             {{#each types}}
@@ -105,16 +105,13 @@
                         </select>
 
                         <br>
-                        <label for="location">Select Location:</label>
+                        <label for="location" style="font-weight: bold;">Select Location:</label>
                         <select class="custom-select" id="createLocation">
-                            <option value="">Selcet a location</option>
-                            {{!-- {{#each}}
-                            <option value="{{location}}">{{location}}</option>
-                            {{/each}} --}}
+                            <option value="">Location</option>
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-success submit btn-lg">Submit</button>
+                    <button type="submit" class="btn submit btn-lg" style="background-color: #2d8db2;">Submit</button>
                 </div>
             </form>
         </div>

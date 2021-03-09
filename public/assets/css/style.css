@@ -1,4 +1,3 @@
-/* side bar wrapper */
 body {
   background-image: url("../img/forestbk.png");
   background-repeat: no-repeat;
@@ -10,7 +9,7 @@ body {
   align-items: stretch;
 }
 
-#sidebar {
+/* #sidebar {
   min-width: 250px;
   max-width: 250px;
   min-height: 100vh;
@@ -36,7 +35,6 @@ a[data-toggle="collapse"] {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
 } */
-
 p {
   font-family: "Poppins", sans-serif;
   font-size: 1.1em;
@@ -45,73 +43,16 @@ p {
   color: #999;
 }
 
-a,
-a:hover,
-a:focus {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s;
-}
-
-#sidebar {
-  /* don't forget to add all the previously mentioned styles here too */
-  background: #7386d5;
-  color: #fff;
-  transition: all 0.3s;
-}
-
-#sidebar .sidebar-header {
-  padding: 20px;
-  background: #6d7fcc;
-}
-
-#sidebar ul.components {
-  padding: 20px 0;
-  border-bottom: 1px solid #47748b;
-}
-
-#sidebar ul p {
-  color: #fff;
-  padding: 10px;
-}
-
-#sidebar ul li a {
-  padding: 10px;
-  font-size: 1.1em;
-  display: block;
-}
-
-#sidebar ul li a:hover {
-  color: #7386d5;
-  background: #fff;
-}
-
-#sidebar ul li.active > a,
-a[aria-expanded="true"] {
-  color: #fff;
-  background: #6d7fcc;
-}
-
-ul ul a {
-  font-size: 0.9em !important;
-  padding-left: 30px !important;
-  background: #6d7fcc;
-}
-
-.row-chatBox {
-  position: fixed;
-  left: 60rem;
-  width: 10rem;
-  bottom: 10px;
-  border: 3px solid black;
-}
-
-.navbar {
-  background-color: green;
+.navbar,
+.navbar a {
+  background-color: #2d8db2;
+  color: black;
+  margin-bottom: 10px;
 }
 
 .card {
   margin-top: 5px;
   margin-bottom: 5px;
   opacity: 85%;
+  background-color: blanchedalmond;
 }
