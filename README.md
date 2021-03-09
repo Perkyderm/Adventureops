@@ -1,6 +1,4 @@
-# Project2
-
-## Adventureops
+# Adventureops
 
 
 ## Table of Contents 
