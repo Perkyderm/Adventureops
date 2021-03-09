@@ -1,6 +1,6 @@
 # Project2
 
-## Name Of Project
+## Adventureops
 
 ## Table of Contents 
 
@@ -56,7 +56,7 @@ npm i
 
 
 ## Link 
-[Link to deployed Heroku app]()
+[Link to deployed Heroku app](https://adventureops.herokuapp.com/login)
 
 
 ## Questions 
