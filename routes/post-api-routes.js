@@ -42,7 +42,7 @@ module.exports = (app) => {
       attributes: ["id"],
       where: { name: req.body.location },
     }).then((locId) => {
-      console.log(locId.dataValues.id);
+      console.log(req.body);
       req.body.LocationId = locId.dataValues.id;
       db.Post.create(req.body).then((dbPost) => res.json(dbPost));
     });
