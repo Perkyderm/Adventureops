@@ -86,7 +86,4 @@ Some of the future developments we hope to add to Adventureops are:
 [Link to deployed Heroku app](https://adventureops.herokuapp.com/login)
 
 
-## Questions 
-
-If you have any questions about the repo, open an issue or contact me directly at mlavina91@gmail.com. 
 
