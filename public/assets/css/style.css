@@ -1,6 +1,9 @@
 body {
   background-image: url("../img/forestbk.png");
   background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
 }
 
 .wrapper {
@@ -55,4 +58,10 @@ p {
   margin-bottom: 5px;
   opacity: 85%;
   background-color: blanchedalmond;
+}
+
+.custom-select {
+  border-radius: 8px;
+  background-color: blanchedalmond;
+  opacity: 85%;
 }

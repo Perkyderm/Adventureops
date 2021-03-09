@@ -6,6 +6,7 @@
             <a class="navbar-brand" href="/logout">Logout</a>
             <a class="navbar-brand" href="/user">Your Posts</a>
             <a class="navbar-brand" href="/home">Home</a>
+            <a class="navbar-brand" href="/gallery">Gallery</a>
 
 
         </div>
@@ -32,7 +33,7 @@
 
     <div class="row">
 
-        <div class="col-md-7">
+        <div class="col-lg-8">
             <div class="form-group">
                 <label for="category" style="font-weight: bold;">Select Category:</label>
                 <select class="custom-select" id="category">
@@ -53,32 +54,34 @@
                     {{/each}}
                     {{/if}}
                 </select>
-                <div class="col-md-12 post-container">
-                    {{#if cont}}
-                    {{#each posts}}
-                    <div class="card" data-post="{{id}}">
-                        <div class="card-header">
-                            <h5 style="float: right; font-weight: 700; margin-inline-end: 10px;">{{type}}</h5>
-                            <h5 style="font-weight: 700;">{{user}}</h5>
-                            <small> ({{date}})</small>
-                            <small style="float: right"> ({{location}})</small>
+                <div class="overflow-auto" style="max-width: 800px; max-height: 800px">
+                    <div class="col-md-12 post-container">
+                        {{#if cont}}
+                        {{#each posts}}
+                        <div class="card" data-post="{{id}}">
+                            <div class="card-header">
+                                <h5 style="float: right; font-weight: 700; margin-inline-end: 10px;">{{type}}</h5>
+                                <h5 style="font-weight: 700;">{{user}}</h5>
+                                <small> ({{date}})</small>
+                                <small style="float: right"> ({{location}})</small>
 
+                            </div>
+                            <div class="card-body">
+                                <p style="color: black;">{{content}}</p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <p style="color: black;">{{content}}</p>
-                        </div>
+
+
+
+                        {{/each}}
+                        {{/if}}
+
+                        {{#unless cont}}
+                        <h4>No adventures yet for this category. <br>Use the form to make a new one!
+                        </h4>
+
+                        {{/unless}}
                     </div>
-
-
-
-                    {{/each}}
-                    {{/if}}
-
-                    {{#unless cont}}
-                    <h4>No adventures yet for this category. <br>Use the form to make a new one!
-                    </h4>
-
-                    {{/unless}}
                 </div>
             </div>
         </div>
@@ -89,7 +92,7 @@
 
 
 
-        <div class="col-md-5">
+        <div class="col-lg-4">
             <form id="cms">
                 <div class="form-group ">
                     <h4>New Adventure!</h4>
