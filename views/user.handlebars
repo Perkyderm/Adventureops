@@ -1,6 +1,6 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
-        <div class="navbar-header">
+        <div class="navbar-header sticky-top">
             <a class="navbar-brand" style="font-weight: bolder;"><img src="/img/mtnicon.png" alt="icon"
                     style="height: 10%; width:10%">Adventureops</a>
             <a class="navbar-brand" href="/logout">
@@ -12,6 +12,7 @@
             <a class="navbar-brand" href="/home">
                 Home
             </a>
+            <a class="navbar-brand" href="/gallery">Gallery</a>
 
         </div>
     </div>
@@ -21,12 +22,12 @@
     <h2>Welcome {{username}}</h2>
 </div>
 
-<div class="container" id='feed' style="text-align: center;">
+<div class="container" id='feed' style="">
     <div class="row">
         <div class="container">
             <div class="row mt-4">
                 <div class="col-md-10">
-                    <div class="form-group" style="text-align: center;">
+                    <div class="form-group" style="">
                         <select class="custom-select" id="category">
                             <option selected value="">All Types</option>
                             {{#each types}}
@@ -38,58 +39,60 @@
 
             </div>
             <div class="row">
-                <div class="col-md-10 post-container">
-                    {{#if cont}}
-                    {{#each posts}}
-                    <div class="card" data-post="{{id}}">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col justify-content-start">
-                                    <h5 style="font-weight: 700;">{{user}}</h5>
-                                </div>
-                                <div class="col justify-content-end">
-                                    <button class="delete btn btn-danger float-end me-1 w-auto">x</button>
+                <div class="overflow-auto" style="max-width: 1600px; max-height: 1280px">
+                    <div class="col-md-10 post-container">
+                        {{#if cont}}
+                        {{#each posts}}
+                        <div class="card" data-post="{{id}}">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col justify-content-start">
+                                        <h5 style="font-weight: 700;">{{user}}</h5>
+                                    </div>
+                                    <div class="col justify-content-end">
+                                        <button class="delete btn btn-danger float-end me-1 w-auto">x</button>
+
+                                    </div>
+
 
                                 </div>
+                                <div class="row">
+                                    <div class="col justify-content-start">
+                                        <small> ({{date}})</small>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <div class="col justify-content-end">
+                                                <h5 class="float-end me-1" style="font-weight: 700;">
+                                                    {{type}}</h5>
+                                            </div>
 
+                                        </div>
 
-                            </div>
-                            <div class="row">
-                                <div class="col justify-content-start">
-                                    <small> ({{date}})</small>
-                                </div>
-                                <div class="col">
-                                    <div class="row">
-                                        <div class="col justify-content-end">
-                                            <h5 class="float-end me-1" style="font-weight: 700;">
-                                                {{type}}</h5>
+                                        <div class="row">
+                                            <div class="col justify-content-end"><small class="float-end">
+                                                    ({{location}})</small></div>
                                         </div>
 
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col justify-content-end"><small class="float-end">
-                                                ({{location}})</small></div>
-                                    </div>
-
                                 </div>
 
                             </div>
+                            <div class="card-body">
+                                <p style="color: black;">{{content}}</p>
+                            </div>
+                        </div>
 
-                        </div>
-                        <div class="card-body">
-                            <p style="color: black;">{{content}}</p>
-                        </div>
+                        {{/each}}
+                        {{/if}}
+
+                        {{#unless cont}}<br>
+                        <h4 style="text-align: center;">No posts yet!
+                        </h4>
+
+                        {{/unless}}
                     </div>
-
-                    {{/each}}
-                    {{/if}}
-
-                    {{#unless cont}}<br>
-                    <h4 style="text-align: center;">No posts yet!
-                    </h4>
-
-                    {{/unless}}
                 </div>
             </div>
         </div>
