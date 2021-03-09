@@ -1,11 +1,13 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
+            <a class="navbar-brand" style="font-weight: bolder;"><img src="/img/mtnicon.png" alt="icon"
+                    style="height: 10%; width:10%">Adventureops</a>
             <a class="navbar-brand" href="/logout">
                 Logout
             </a>
-            <a class="navbar-brand" href="/user">
-                User
+            <a class="navbar-brand active" href="/user">
+                Your Posts
             </a>
             <a class="navbar-brand" href="/home">
                 Home
@@ -15,23 +17,16 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <h2>Welcome {{username}}</h2>
-        </div>
-    </div>
+<div class="container" style="text-align: center;">
+    <h2>Welcome {{username}}</h2>
 </div>
 
-<div class="container" id='feed'>
+<div class="container" id='feed' style="text-align: center;">
     <div class="row">
-        <div class=" col-lg-6">
-            Your Feed
-        </div>
         <div class="container">
             <div class="row mt-4">
-                <div class="col-md-6">
-                    <div class="form-group">
+                <div class="col-md-10">
+                    <div class="form-group" style="text-align: center;">
                         <select class="custom-select" id="category">
                             <option selected value="">All Types</option>
                             {{#each types}}
@@ -43,7 +38,7 @@
 
             </div>
             <div class="row">
-                <div class="col-md-6 post-container">
+                <div class="col-md-10 post-container">
                     {{#if cont}}
                     {{#each posts}}
                     <div class="card" data-post="{{id}}">
@@ -54,7 +49,7 @@
                                 </div>
                                 <div class="col justify-content-end">
                                     <button class="delete btn btn-danger float-end me-1 w-auto">x</button>
-                                    <button class="delete btn btn-info float-end me-1 w-auto">EDIT</button>
+
                                 </div>
 
 
@@ -86,11 +81,12 @@
                             <p style="color: black;">{{content}}</p>
                         </div>
                     </div>
+
                     {{/each}}
                     {{/if}}
 
-                    {{#unless cont}}
-                    <h4>No posts yet for this category. <br>Use the form below to make a new post.
+                    {{#unless cont}}<br>
+                    <h4 style="text-align: center;">No posts yet!
                     </h4>
 
                     {{/unless}}

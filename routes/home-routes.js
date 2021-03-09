@@ -44,15 +44,4 @@ module.exports = (app) => {
         res.status(401).json(err);
       });
   });
-
-  // DELETE USER
-  app.delete("/api/home/:id", (req, res) => {
-    db.User.destroy({
-      where: {
-        id: req.params.id,
-      },
-      include: [db.Post],
-      include: [db.Location],
-    }).then((dbUser) => res.json(dbUser));
-  });
 };
