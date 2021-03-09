@@ -4,6 +4,8 @@ $(document).ready(function () {
   var usernameInput = $("input#username-input");
   var passwordInput = $("input#password-input");
 
+  const modal = new bootstrap.Modal(document.getElementById("passwordModal"));
+
   // When the form is submitted, we validate there's an email and password entered
   loginForm.on("submit", function (event) {
     event.preventDefault();
@@ -33,6 +35,7 @@ $(document).ready(function () {
         // If there's an error, log the error
       })
       .catch(function (err) {
+        modal.show();
         console.log(err);
       });
   }
