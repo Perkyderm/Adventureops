@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
       .then((data) => {
         console.log("Success in submitting post:", data);
         window.location.href = "/home";
+        return;
       })
       .catch((error) => {
         console.error("Error:", error);
